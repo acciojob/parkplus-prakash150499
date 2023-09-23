@@ -38,9 +38,10 @@ public class ReservationServiceImpl implements ReservationService {
             // Handle the case where the ParkingLot is not found
             throw new CannotMakeException("Cannot make reservation");
         }
+        User user;
         try {
             // Attempt to retrieve the ParkingLot
-            User user = userRepository3.findById(userId).get();
+            user = userRepository3.findById(userId).get();
             // ParkingLot is found, you can use it here
         } catch (Exception e) {
             // Handle the case where the ParkingLot is not found
@@ -65,8 +66,7 @@ public class ReservationServiceImpl implements ReservationService {
                 reserveSpot = spot;
             }
         }
-        if(reserveSpot.equals(null))
-        {
+        if (reserveSpot.equals(null)) {
             throw new CannotMakeException("Cannot make reservation");
         }
 
@@ -78,8 +78,7 @@ public class ReservationServiceImpl implements ReservationService {
         userRepository3.save(user);
         user.getReservationList().add(reservation);
         spotRepository3.save(reserveSpot);
-
-
         return reservation;
+        //finished
     }
 }
