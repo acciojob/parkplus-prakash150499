@@ -1,4 +1,4 @@
-package com.driver.enums;
+package com.driver.model;
 
 public enum SpotType {
 

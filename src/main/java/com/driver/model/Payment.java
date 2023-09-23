@@ -1,7 +1,5 @@
 package com.driver.model;
 
-import com.driver.enums.PaymentMode;
-
 import javax.persistence.*;
 
 @Entity

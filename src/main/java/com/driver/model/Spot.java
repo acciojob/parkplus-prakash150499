@@ -1,7 +1,6 @@
 package com.driver.model;
 
-import com.driver.enums.SpotType;
-import org.hibernate.annotations.ManyToAny;import javax.persistence.*;import java.util.ArrayList;import java.util.List;
+import javax.persistence.*;import java.util.ArrayList;import java.util.List;
 
 @Entity
 public class Spot
