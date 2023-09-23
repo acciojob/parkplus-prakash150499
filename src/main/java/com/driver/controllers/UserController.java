@@ -1,4 +1,5 @@
 package com.driver.controllers;
+import com.driver.model.User;
 import com.driver.services.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,12 +13,15 @@ public class UserController {
     UserServiceImpl userService;
     @PostMapping("/register")
     public ResponseEntity<Void> registerUser(@RequestParam String name, @RequestParam String phoneNumber, @RequestParam String password){
+       userService.register(name, phoneNumber, password);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PutMapping("/update")
     public ResponseEntity<User> updatePassword(@RequestParam Integer userId, @RequestParam String password){
-        return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+        User user=userService.updatePassword(userId, password);
+
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete")
