@@ -20,11 +20,12 @@ public class PaymentServiceImpl implements PaymentService {
     public Payment pay(Integer reservationId, int amountSent, String mode) throws Exception {
 
         String paymentMode=mode.toLowerCase();
+        Reservation reservation=reservationRepository2.findById(reservationId).get();
         if(!paymentMode.equals("cash")&&!paymentMode.equals("card")&&!paymentMode.equals("upi"))
         {
             throw new Exception("Payment mode not detected");
         }
-        Reservation reservation=reservationRepository2.findById(reservationId).get();
+
         int billAmount=reservation.getSpot().getPricePerHour()*reservation.getNumberOfHours();
         if(amountSent<billAmount)
         {
@@ -46,7 +47,7 @@ public class PaymentServiceImpl implements PaymentService {
         payment.setReservation(reservation);
         payment.setPaymentCompleted(true);
         reservation.setPayment(payment);
-
+        reservationRepository2.save(reservation);
 return payment;
     }
 }
